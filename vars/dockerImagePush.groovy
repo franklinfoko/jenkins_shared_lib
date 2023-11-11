@@ -8,8 +8,8 @@ def call(String imageRepoName, String imageTag, String hubUser, String awsDefaul
     }
     sh "docker push ${hubUser}/${imageRepoName}:${ImageTag}"
 
-    sh """
-     aws ecr get-login-password --region ${awsDefaultregion} | docker login --username AWS --password-stdin ${awsAccountId}.dkr.ecr.${awsDefaultregion}.amazonaws.com
-     docker push ${awsAccountId}.dkr.ecr.${awsDefaultregion}.amazonaws.com/${imageRepoName}:${imageTag}
-    """
+    withCredentials([<object of type com.cloudbees.jenkins.plugins.awscredentials.AmazonWebServicesCredentialsBinding>]) {
+        sh "aws ecr get-login-password --region ${awsDefaultregion} | docker login --username AWS --password-stdin ${awsAccountId}.dkr.ecr.${awsDefaultregion}.amazonaws.com"
+}
+    sh "docker push ${awsAccountId}.dkr.ecr.${awsDefaultregion}.amazonaws.com/${imageRepoName}:${imageTag}"
 }
