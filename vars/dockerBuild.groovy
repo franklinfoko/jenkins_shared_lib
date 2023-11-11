@@ -1,4 +1,4 @@
-def call(String ecrRepoName, String awsAccountId, String imageTag, String awsDefaultregion, String hubUser) {
+def call(String imageRepoName, String awsAccountId, String imageTag, String awsDefaultregion, String hubUser) {
     
     sh """
      docker build -t ${imageRepoName}:${imageTag} .
