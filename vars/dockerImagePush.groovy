@@ -1,4 +1,4 @@
-def call(String imageRepoName, String awsAccountId, String imageTag, String awsDefaultregion, String hubUser) {
+def call(String imageRepoName, String imageTag, String hubUser) {
     withCredentials([usernamePassword(
         credentialsId: 'dockerhub',
         passwordVariable: 'DOCKERHUB_PASSWORD',
