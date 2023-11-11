@@ -7,7 +7,7 @@ def call(String imageRepoName, String imageTag, String hubUser, String awsDefaul
     )]) {
         sh """
          docker login -u '$DOCKERHUB_USER' -p '$DOCKERHUB_PASSWORD'
-         docker push ${hubUser}/${imageRepoName}:${ImageTag}
+         docker push ${hubUser}/${imageRepoName}:${imageTag}
         """ 
     }
 
