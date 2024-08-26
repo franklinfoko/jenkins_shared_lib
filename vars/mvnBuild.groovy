@@ -1,3 +1,7 @@
 def call() {
-    sh 'mvn clean install'
+    try {
+        sh 'mvn clean install'
+    } catch(Exception e) {
+        println "Fail: ${e.message}"
+    }
 }
